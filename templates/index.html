@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MumbaiForex - Best USD Cash Rates</title>
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-color: #f4f7f6;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+        }
+        .card {
+            background-color: #ffffff;
+            width: 100%;
+            max-width: 400px;
+            border-radius: 10px;
+            box-shadow: 0 8px 20px rgba(0,0,0,0.1);
+            overflow: hidden;
+            text-align: center;
+        }
+        .header {
+            background-color: #002D62;
+            color: white;
+            padding: 20px;
+        }
+        .header h1 {
+            margin: 0;
+            font-size: 24px;
+        }
+        .rate-box {
+            padding: 20px;
+            border-bottom: 1px solid #eeeeee;
+        }
+        .rate-box p {
+            margin: 0;
+            color: #666;
+            font-size: 14px;
+        }
+        .rate-box h2 {
+            margin: 10px 0 0 0;
+            font-size: 36px;
+            color: #2e7d32;
+        }
+        .form-section {
+            padding: 20px;
+        }
+        .input-group {
+            margin-bottom: 15px;
+            text-align: left;
+        }
+        .input-group label {
+            display: block;
+            font-size: 12px;
+            color: #333;
+            margin-bottom: 5px;
+            font-weight: bold;
+        }
+        .input-group input {
+            width: 100%;
+            padding: 10px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            box-sizing: border-box;
+            font-size: 14px;
+        }
+        .submit-btn {
+            background-color: #ff9800;
+            color: white;
+            border: none;
+            width: 100%;
+            padding: 12px;
+            font-size: 16px;
+            font-weight: bold;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: 0.3s;
+        }
+        .submit-btn:hover {
+            background-color: #e68a00;
+        }
+        .trust-badge {
+            font-size: 11px;
+            color: #888;
+            padding-bottom: 15px;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="card">
+        <div class="header">
+            <h1>MumbaiForex</h1>
+        </div>
+        
+        <div class="rate-box">
+            <p>Live USD Buying Rate (Cash)</p>
+            <h2>₹ {{ rate }}</h2>
+        </div>
+
+        <div class="form-section">
+            <form action="/submit-lead" method="POST">
+                <div class="input-group">
+                    <label>Full Name</label>
+                    <input type="text" name="name" placeholder="Enter your name" required>
+                </div>
+                <div class="input-group">
+                    <label>Mobile Number</label>
+                    <input type="tel" name="phone" placeholder="10-digit mobile number" pattern="[0-9]{10}" required>
+                </div>
+                <div class="input-group">
+                    <label>Amount in USD ($)</label>
+                    <input type="number" name="amount" placeholder="E.g. 1000" min="50" required>
+                </div>
+                <button type="submit" class="submit-btn">Get Instant Call with Best Deal</button>
+            </form>
+        </div>
+        
+        <div class="trust-badge">
+            🔒 100% Secure | Verified Local Dealers Only
+        </div>
+    </div>
+
+</body>
+</html>
+
+    

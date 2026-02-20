@@ -1,0 +1,56 @@
+from flask import Flask, render_template, request
+import requests
+
+app = Flask(__name__)
+
+# Function to safely get the current USD to INR rate
+def get_usd_to_inr():
+    try:
+        url = "https://api.exchangerate-api.com/v4/latest/USD"
+        response = requests.get(url, timeout=5) # 5 second ka time limit
+        data = response.json()
+        real_rate = data['rates']['INR']
+        
+        # Dealer margin add karna (+0.50)
+        final_rate = round(real_rate + 0.50, 2)
+        return final_rate
+    except Exception as e:
+        print(f"API ERROR: {e}")
+        # Agar internet band hai ya API down hai, to ek realistic rate dikhao (91 nahi)
+        return 83.50 
+
+@app.route('/')
+def home():
+    current_rate = get_usd_to_inr()
+    return render_template('index.html', rate=current_rate)
+
+@app.route('/submit-lead', methods=['POST'])
+def submit_lead():
+    # User se data lena
+    name = request.form.get('name')
+    phone = request.form.get('phone')
+    amount = request.form.get('amount')
+    
+    # Terminal mein safai se Lead print karna
+    print("\n" + "="*40)
+    print("🔥 NEW HOT LEAD RECEIVED 🔥")
+    print(f"Name   : {name}")
+    print(f"Phone  : {phone}")
+    print(f"Amount : $ {amount}")
+    print("="*40 + "\n")
+    
+    # User ko confirmation message dikhana
+    return """
+    <div style='text-align: center; font-family: Arial; padding-top: 50px;'>
+        <h2 style='color: green;'>Request Received Successfully!</h2>
+        <p>Our premium dealer will call you in 5 minutes with the exact payout details.</p>
+        <a href='/' style='padding: 10px 20px; background: #002D62; color: white; text-decoration: none; border-radius: 5px;'>Go Back</a>
+    </div>
+    """
+
+if __name__ == '__main__':
+    app.run(debug=True)
+
+
+
+
